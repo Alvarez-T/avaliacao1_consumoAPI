@@ -5,7 +5,10 @@ class Endereco:
         try:
             url = f'https://viacep.com.br/ws/{cep}/json/'
             response = requests.get(url)
-            response.json()
+            if response.status_code == 200:
+                return response.json()
+            else:
+                return None
         except:
             return None
     
@@ -16,7 +19,7 @@ class Endereco:
             return False
 
     def formatar_endereco(self, endereco):
-        if endereco:
+        if endereco['erro'] == False:
             formatted_address = f"Endereço encontrado: {endereco['logradouro']}, {endereco['bairro']}\nCidade: {endereco['localidade']}-{endereco['uf']}"
             return formatted_address
         else:
@@ -29,7 +32,7 @@ def main():
         endereco = Endereco()
         if endereco.validar_cep(cep):
             endereco_obtido = endereco.obter_endereco(cep)
-            
+
             if (endereco_obtido is None):
                 print("não foi possível comunicar com a API")
                 return
