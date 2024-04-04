@@ -31,7 +31,7 @@ Este é um programa simples para buscar informações de endereços usando o CEP
 
 - Execute o programa Cep.py para buscar informações de endereço usando o CEP:
     ```
-    py Cep.py
+    py CepApi.py
     ```
 
 - Siga as instruções fornecidas para inserir o CEP desejado.
@@ -39,7 +39,7 @@ Este é um programa simples para buscar informações de endereços usando o CEP
 
 ## Execução dos Testes
 
-- Execute o arquivo TestCep.py para executar os testes unitários:
+- Execute o arquivo TestCep.py para realizar os testes unitários:
     ```
     py TestCep.py
     ```
