@@ -2,11 +2,11 @@ import requests
 
 class Endereco:
     def obter_endereco(self, cep):
-        url = f'https://viacep.com.br/ws/{cep}/json/'
-        response = requests.get(url)
-        if response.status_code == 200:
-            return response.json()
-        else:
+        try:
+            url = f'https://viacep.com.br/ws/{cep}/json/'
+            response = requests.get(url)
+            response.json()
+        except:
             return None
     
     def validar_cep(self, cep):
@@ -29,6 +29,11 @@ def main():
         endereco = Endereco()
         if endereco.validar_cep(cep):
             endereco_obtido = endereco.obter_endereco(cep)
+            
+            if (endereco_obtido is None):
+                print("não foi possível comunicar com a API")
+                return
+            
             endereco_formatado = endereco.formatar_endereco(endereco_obtido)
             print(endereco_formatado)
             break
